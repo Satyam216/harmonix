@@ -1,11 +1,23 @@
-function App() {
+import {Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <h1 className="text-4xl font-bold text-green-500">
-        HARMONIX
-      </h1>
-    </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
   );
 }
-
-export default App;
