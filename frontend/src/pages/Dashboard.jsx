@@ -29,7 +29,7 @@ export default function Dashboard() {
 
         <SearchBar value={search} onChange={setSearch} />
 
-        <SongSection title="All Songs" tracks={allSongs.filter(s=>s.title.toLowerCase().includes(search.toLowerCase()))} />
+        <SongSection title="All Songs" tracks={allSongs.filter(s=>s.title.includes(search))} />
         <SongSection title="Mostly Played" tracks={mostlyPlayed} />
         <SongSection title="Recently Played" tracks={recentlyPlayed} />
       </main>
