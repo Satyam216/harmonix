@@ -1,19 +1,29 @@
-const express = require("express");
+import dotenv from "dotenv";
+dotenv.config();
+
+
+import express from "express";
+import cors from "cors";
+import uploadRoutes from "./routes/upload.js";
+import { initCloudinary } from "./config/cloudinary.js"; // 🔥 ADD
+
 const app = express();
-const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/tracks", (req, res) => {
-  res.json([
-    { id: 1, title: "Night Drive", artist: "Harmonix" },
-    { id: 2, title: "LoFi Chill", artist: "Harmonix" }
-  ]);
+initCloudinary();
+
+app.get("/", (req, res) => {
+  res.send("HARMONIX backend is running 🚀");
 });
 
-app.get("/categories", (req, res) => {
-  res.json(["Chill", "Workout", "Focus"]);
-});
+// routes
+app.use("/api/upload", uploadRoutes);
+console.log("TEST ENV:", process.env.CLOUDINARY_API_KEY);
 
-app.listen(5000, () => console.log("Backend running"));
+
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Backend running on http://localhost:${PORT}`);
+});
