@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-
 import express from "express";
 import cors from "cors";
 import uploadRoutes from "./routes/upload.js";
 import { initCloudinary } from "./config/cloudinary.js"; // 🔥 ADD
 import searchRoutes from "./routes/search.js";
+import "./config/firebaseAdmin.js";
 
 const app = express();
 
@@ -26,7 +26,7 @@ console.log("TEST ENV:", process.env.CLOUDINARY_API_KEY);
 app.use("/api/search", searchRoutes);
 
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on http://localhost:${PORT}`);
 });

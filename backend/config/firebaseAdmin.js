@@ -1,9 +1,12 @@
+import "dotenv/config";
 import admin from "firebase-admin";
-import fs from "fs";
 
-// 🔑 Service account key path
+if (!process.env.FIREBASE_SERVICE_ACCOUNT) {
+  throw new Error("FIREBASE_SERVICE_ACCOUNT ENV MISSING");
+}
+
 const serviceAccount = JSON.parse(
-  fs.readFileSync("./harmonix-serviceAccountKey.json", "utf8")
+  process.env.FIREBASE_SERVICE_ACCOUNT
 );
 
 admin.initializeApp({
