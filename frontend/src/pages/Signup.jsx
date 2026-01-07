@@ -14,7 +14,7 @@ export default function Signup() {
     mobile: "",
     age: "",
     country: "",
-    role: "user",
+    role: "user",   
   });
 
   const handleChange = (e) =>

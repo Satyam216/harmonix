@@ -6,6 +6,7 @@ import express from "express";
 import cors from "cors";
 import uploadRoutes from "./routes/upload.js";
 import { initCloudinary } from "./config/cloudinary.js"; // 🔥 ADD
+import searchRoutes from "./routes/search.js";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.get("/", (req, res) => {
 // routes
 app.use("/api/upload", uploadRoutes);
 console.log("TEST ENV:", process.env.CLOUDINARY_API_KEY);
+
+app.use("/api/search", searchRoutes);
 
 
 const PORT = 5000;

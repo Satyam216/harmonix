@@ -12,6 +12,9 @@ import UploadSong from "./pages/admin/UploadSong";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminRoute from "./routes/AdminRoute";
 import Profile from "./pages/Profile";
+import Layout from "./layout/Layout";
+import LikedSongs from "./pages/LikedSongs";
+import Search from "./pages/Search";
 
 export default function App() {
   return (
@@ -25,7 +28,9 @@ export default function App() {
         path="/"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <Layout>
+              <Dashboard />
+            </Layout>
           </ProtectedRoute>
         }
       />
@@ -67,7 +72,42 @@ export default function App() {
         }
       />
 
-      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+       {/* 🔥 LIKED PAGE */}
+      <Route
+        path="/liked"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <LikedSongs />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route 
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+        <Route
+          path="/search"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Search />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+
+      <Route 
+        path="/playlists" 
+        element={<div className="text-white p-6">Playlists coming soon</div>} />
+
 
     </Routes>
   );
