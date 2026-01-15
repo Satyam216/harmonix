@@ -21,12 +21,17 @@ export default function DashboardHeader() {
         <div
           onClick={() => setOpen(!open)}
           className="
+            relative
             w-10 h-10 rounded-full
             cursor-pointer
             overflow-hidden
-            border border-white/10
             bg-zinc-800
             flex items-center justify-center
+
+            ring-2 ring-yellow-500/60
+            shadow-[0_0_12px_rgba(38,197,94,0.55)]
+            hover:shadow-[0_0_18px_rgba(34,197,94,0.9)]
+            transition
           "
         >
           {profile?.avatar ? (
