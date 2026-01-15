@@ -78,12 +78,12 @@ export default function SongSection({ title, tracks }) {
             {/* ❤️ + ➕ ICONS (BOTTOM RIGHT) */}
             <div
               className="
-                absolute bottom-3 right-3
+                absolute bottom-1 right-3
                 flex items-center gap-2
                 bg-black/50 backdrop-blur-md
-                px-2 py-1.5 rounded-full
+                px-2 py-1.2 rounded-full
                 shadow-lg
-                opacity-0 scale-95
+                opacity-0 scale-95  
                 group-hover:opacity-100 group-hover:scale-100
                 transition-all duration-300
               "
