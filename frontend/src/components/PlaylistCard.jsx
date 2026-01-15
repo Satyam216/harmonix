@@ -1,33 +1,54 @@
-import { Music } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import PlaylistCover from "./PlaylistCover";
 
 export default function PlaylistCard({ playlist }) {
   const navigate = useNavigate();
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const loadCovers = async () => {
+      const snap = await getDocs(
+        collection(db, "playlists", playlist.id, "songs")
+      );
+
+      const trackIds = snap.docs.slice(0, 4).map(d => d.data().trackId);
+
+      const covers = await Promise.all(
+        trackIds.map(async (id) => {
+          const t = await getDoc(doc(db, "tracks", id));
+          return t.exists() ? t.data().coverUrl : null;
+        })
+      );
+
+      setImages(covers.filter(Boolean));
+    };
+
+    loadCovers();
+  }, [playlist.id]);
 
   return (
     <div
       onClick={() => navigate(`/playlist/${playlist.id}`)}
       className="
-        bg-zinc-800 rounded-xl p-4 cursor-pointer
-        hover:bg-zinc-700 transition
+        group cursor-pointer
+        bg-zinc-900 hover:bg-zinc-800
+        rounded-xl p-3 transition
       "
     >
-      <div
-        className="
-          h-36 rounded-lg
-          bg-gradient-to-br from-green-500 to-emerald-700
-          flex items-center justify-center
-        "
-      >
-        <Music size={40} />
+      {/* COVER (smaller) */}
+      <div className="relative aspect-square mb-3 rounded-lg overflow-hidden">
+        <PlaylistCover images={images} />
       </div>
 
-      <h3 className="mt-3 font-semibold truncate">
+      {/* TEXT */}
+      <p className="text-sm font-semibold truncate">
         {playlist.name}
-      </h3>
-
+      </p>
       <p className="text-xs text-gray-400">
-        {playlist.songCount || 0} songs
+        {playlist.songCount} songs
       </p>
     </div>
   );

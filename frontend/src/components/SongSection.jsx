@@ -54,7 +54,7 @@ export default function SongSection({ title, tracks }) {
     <div className="mb-10">
       <h2 className="text-xl font-semibold mb-4 text-white">{title}</h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         {tracks.map((t) => (
           <div
             key={t.id}
