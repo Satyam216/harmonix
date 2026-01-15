@@ -44,7 +44,7 @@ export default function Playlists() {
           <PlaylistCard
             key={p.id}
             playlist={p}
-            onDelete={handleDelete}   // 👈 IMPORTANT
+            onDelete={handleDelete}
           />
         ))}
       </div>
