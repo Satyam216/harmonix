@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import AddToPlaylistMenu from "./AddToPlaylistMenu";
 
 export default function SongSection({ title, tracks }) {
   const { playTrack } = useAudio();
@@ -50,7 +51,7 @@ export default function SongSection({ title, tracks }) {
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-10">
       <h2 className="text-xl font-semibold mb-4 text-white">{title}</h2>
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -58,28 +59,70 @@ export default function SongSection({ title, tracks }) {
           <div
             key={t.id}
             onClick={() => playTrack(t)}
-            className="relative bg-zinc-800 p-4 rounded hover:bg-zinc-700 cursor-pointer"
+            className="
+              relative group
+              bg-zinc-800 p-4 rounded-xl
+              hover:bg-zinc-700
+              transition-all duration-300
+              cursor-pointer
+            "
           >
             <img
               src={t.coverUrl}
-              className="rounded mb-2 aspect-square object-cover"
+              className="rounded-lg mb-2 aspect-square object-cover"
             />
 
-            <p className="font-semibold truncate">{t.title}</p>
+            <p className="font-semibold truncate text-white">{t.title}</p>
             <p className="text-sm text-gray-400 truncate">{t.artist}</p>
 
-            {/* ❤️ LIKE */}
-            <button
-              onClick={(e) => toggleLike(e, t)}
-              className={`absolute top-3 right-3 ${
-                likedMap[t.id] ? "text-green-500" : "text-white"
-              }`}
+            {/* ❤️ + ➕ ICONS (BOTTOM RIGHT) */}
+            <div
+              className="
+                absolute bottom-3 right-3
+                flex items-center gap-2
+                bg-black/50 backdrop-blur-md
+                px-2 py-1.5 rounded-full
+                shadow-lg
+                opacity-0 scale-95
+                group-hover:opacity-100 group-hover:scale-100
+                transition-all duration-300
+              "
+              onClick={(e) => e.stopPropagation()}
             >
-              <Heart
-                size={18}
-                fill={likedMap[t.id] ? "currentColor" : "none"}
-              />
-            </button>
+              {/* ❤️ LIKE */}
+              <button
+                onClick={(e) => toggleLike(e, t)}
+                className={`
+                  p-1.5 rounded-full
+                  transition-all duration-300
+                  hover:scale-110
+                  ${
+                    likedMap[t.id]
+                      ? "text-green-500 bg-green-500/20"
+                      : "text-white hover:text-green-400 hover:bg-white/10"
+                  }
+                `}
+              >
+                <Heart
+                  size={16}
+                  fill={likedMap[t.id] ? "currentColor" : "none"}
+                />
+              </button>
+
+              {/* ➕ ADD TO PLAYLIST */}
+              <div
+                className="
+                  p-1.5 rounded-full
+                  text-white
+                  hover:text-blue-400
+                  hover:bg-white/10
+                  transition-all duration-300
+                  hover:scale-110
+                "
+              >
+                <AddToPlaylistMenu song={t} />
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -15,6 +15,8 @@ import Profile from "./pages/Profile";
 import Layout from "./layout/Layout";
 import LikedSongs from "./pages/LikedSongs";
 import Search from "./pages/Search";
+import Playlist from "./pages/Playlist";
+import PlaylistDetails from "./pages/PlaylistDetails";
 
 export default function App() {
   return (
@@ -106,9 +108,25 @@ export default function App() {
 
       <Route 
         path="/playlists" 
-        element={<div className="text-white p-6">Playlists coming soon</div>} />
+        element={
+            <ProtectedRoute>
+              <Layout>
+                <Playlist/>
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
 
-
+        <Route 
+        path="/playlist/:id" 
+        element={
+            <ProtectedRoute>
+              <Layout>
+                <PlaylistDetails/>
+              </Layout>
+            </ProtectedRoute>
+          }
+        />  
     </Routes>
   );
 }
