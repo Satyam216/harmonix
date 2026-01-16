@@ -29,7 +29,9 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 min-h-screen bg-gray-900 px-4 flex flex-col">
+    <aside className="w-64 min-h-screen 
+      bg-gradient-to-b from-zinc-500 via-black to-black
+      px-10 flex flex-col">
 
       {/* LOGO */}
       <div
@@ -37,13 +39,14 @@ export default function Sidebar() {
         className="
           cursor-pointer
           flex justify-center
+          h-32
         "
       >
         <img
           src="/harmonix.png"
           alt="Harmonix Logo"
           className="
-            w-[200px]
+            w-[250px]
             object-contain
             transition-transform duration-300
             hover:scale-105
@@ -51,7 +54,7 @@ export default function Sidebar() {
         />
       </div>
        
-      <div className="pb-8 pt border-t border-white/5"></div>
+      <div className="pb-5 border-t border-zinc-600"></div>
 
       {/* NAVIGATION */}
       <nav className="mt-2 flex flex-col gap-1">
@@ -103,7 +106,7 @@ export default function Sidebar() {
       </nav>
 
       {/* BOTTOM ACTIONS */}
-      <div className="mt-auto pb-6 pt-4 border-t border-white/5 flex flex-col gap-1">
+      <div className="mt-auto pb-6 pt-4 border-t border-zinc-800 flex flex-col gap-1">
         {/* SETTINGS */}
         <div
           onClick={() => navigate("/settings")}

@@ -11,7 +11,9 @@ export default function DashboardHeader() {
 
   return (
     <div className="flex justify-between items-center mb-6">
-      <h1 className="text-3xl font-bold text-white">
+      <h1 className="text-3xl font-bold
+          bg-gradient-to-r from-orange-400 via-pink-200 to-blue-400
+          bg-clip-text text-transparent">
         Enjoy your music
         {profile?.name && `, ${profile.name.split(" ")[0]}`}
       </h1>

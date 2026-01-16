@@ -17,6 +17,7 @@ import LikedSongs from "./pages/LikedSongs";
 import Search from "./pages/Search";
 import Playlist from "./pages/Playlist";
 import PlaylistDetails from "./pages/PlaylistDetails";
+import UploadPodcast from "./pages/admin/UploadPodcast";
 
 export default function App() {
   return (
@@ -41,7 +42,9 @@ export default function App() {
         path="/podcasts"
         element={
           <ProtectedRoute>
-            <Podcasts />
+            <Layout>
+              <Podcasts />
+            </Layout>
           </ProtectedRoute>
         }
       />
@@ -50,7 +53,9 @@ export default function App() {
         path="/podcast/:id"
         element={
           <ProtectedRoute>
-            <PodcastDetail />
+            <Layout>
+              <PodcastDetail />
+            </Layout>
           </ProtectedRoute>
         }
       />
@@ -66,13 +71,23 @@ export default function App() {
       />
 
       <Route
-        path="/admin/upload"
+        path="/admin/uploadSong"
         element={
           <AdminRoute>
             <UploadSong />
           </AdminRoute>
         }
       />
+
+      <Route
+        path="/admin/uploadPodcast"
+        element={
+          <AdminRoute>
+            <UploadPodcast />
+          </AdminRoute>
+        }
+      />
+
 
        {/* 🔥 LIKED PAGE */}
       <Route

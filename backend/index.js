@@ -3,10 +3,11 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
-import uploadRoutes from "./routes/upload.js";
+import uploadSongsRoutes from "./routes/uploadSongs.js";
 import { initCloudinary } from "./config/cloudinary.js"; // 🔥 ADD
 import searchRoutes from "./routes/search.js";
 import "./config/firebaseAdmin.js";
+import uploadPodcastRoutes from "./routes/uploadPodcast.js";
 
 const app = express();
 
@@ -20,7 +21,9 @@ app.get("/", (req, res) => {
 });
 
 // routes
-app.use("/api/upload", uploadRoutes);
+app.use("/api/upload", uploadSongsRoutes);
+app.use("/api/upload", uploadPodcastRoutes);
+
 console.log("TEST ENV:", process.env.CLOUDINARY_API_KEY);
 
 app.use("/api/search", searchRoutes);
