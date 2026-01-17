@@ -4,11 +4,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Podcasts from "./pages/Podcasts";
-import PodcastDetail from "./pages/PodcastDetail";
-
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UploadSong from "./pages/admin/UploadSong";
-
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AdminRoute from "./routes/AdminRoute";
 import Profile from "./pages/Profile";
@@ -49,7 +46,7 @@ export default function App() {
         }
       />
 
-      <Route
+      {/* <Route
         path="/podcast/:id"
         element={
           <ProtectedRoute>
@@ -58,7 +55,7 @@ export default function App() {
             </Layout>
           </ProtectedRoute>
         }
-      />
+      /> */}
 
       {/* 🛠️ ADMIN ROUTES */}
       <Route

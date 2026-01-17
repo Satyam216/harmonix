@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import BottomPlayer from "../components/BottomPlayer";
+import PodcastPlayer from "../components/PodcastPlayer";
 import { ChevronRight } from "lucide-react";
 
 export default function Layout({ children }) {
@@ -48,6 +49,17 @@ export default function Layout({ children }) {
       >
         {children}
       </main>
+
+      {/* 🎥 PODCAST PLAYER (VIDEO) */}
+      <div
+        className={`
+          fixed bottom-24 right-0 z-40
+          transition-all duration-300
+          ${sidebarOpen ? "left-64" : "left-0"}
+        `}
+      >
+        <PodcastPlayer sidebarOpen={sidebarOpen} />
+      </div>
 
       {/* BOTTOM PLAYER */}
       <div
